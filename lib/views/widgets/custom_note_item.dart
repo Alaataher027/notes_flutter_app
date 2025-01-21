@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
+  final Color color;
+
+  const NoteItem({super.key, required this.color});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 24, bottom: 24, left: 16),
       decoration: BoxDecoration(
-        color: Colors.amber,
+        color: color,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -26,7 +28,7 @@ class NoteItem extends StatelessWidget {
             subtitle: Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: Text(
-                "describition of the note",
+                "description of the note",
                 style: TextStyle(
                   color: const Color.fromARGB(182, 0, 0, 0),
                   fontSize: 16,
@@ -37,7 +39,7 @@ class NoteItem extends StatelessWidget {
               onPressed: () {},
               icon: Icon(
                 FontAwesomeIcons.trash,
-                color: (Colors.black),
+                color: Colors.black,
                 size: 25,
               ),
             ),
@@ -45,7 +47,7 @@ class NoteItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 35),
             child: Text(
-              "sep14, 2025",
+              "Sep 14, 2025",
               style: TextStyle(
                 fontSize: 16,
                 color: const Color.fromARGB(182, 0, 0, 0),
