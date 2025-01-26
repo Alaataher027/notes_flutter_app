@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/constants.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
-
+  const CustomButton({super.key, required this.title});
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +16,7 @@ class CustomButton extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          "Add Note",
+          title,
           style: TextStyle(
             color: Colors.black,
             fontSize: 20,

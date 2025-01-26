@@ -30,7 +30,9 @@ class AddNoteBottomSheet extends StatelessWidget {
                 height: 50,
               ),
               // Spacer(), can't use it with SingleChildScrollView
-              CustomButton(),
+              CustomButton(
+                title: 'Add Note',
+              ),
               SizedBox(
                 height: 20,
               ),
@@ -41,4 +43,3 @@ class AddNoteBottomSheet extends StatelessWidget {
     );
   }
 }
-
