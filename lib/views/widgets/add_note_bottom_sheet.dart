@@ -7,38 +7,74 @@ class AddNoteBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 32,
-              ),
-              CustomTextField(
-                hint: 'Title',
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              CustomTextField(
-                hint: "Content",
-                maxLines: 5,
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              // Spacer(), can't use it with SingleChildScrollView
-              CustomButton(
-                title: 'Add Note',
-              ),
-              SizedBox(
-                height: 20,
-              ),
-            ],
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      child: SingleChildScrollView(
+        child: AddNoteForm(),
+      ),
+    );
+  }
+}
+
+class AddNoteForm extends StatefulWidget {
+  const AddNoteForm({
+    super.key,
+  });
+
+  @override
+  State<AddNoteForm> createState() => _AddNoteFormState();
+}
+
+class _AddNoteFormState extends State<AddNoteForm> {
+  final GlobalKey<FormState> formKey = GlobalKey();
+  // if the user input an incorrect value
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
+  String? title, content;
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formKey,
+      autovalidateMode: autovalidateMode,
+      child: Column(
+        children: [
+          SizedBox(
+            height: 32,
           ),
-        ),
+          CustomTextField(
+            onSaved: (value) {
+              title = value;
+            },
+            hint: 'Title',
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          CustomTextField(
+            onSaved: (value) {
+              content = value;
+            },
+            hint: "Content",
+            maxLines: 5,
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+          // Spacer(), can't use it with SingleChildScrollView
+          CustomButton(
+            onTap: () {
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
+              } else {
+                autovalidateMode = AutovalidateMode.always;
+              }
+            },
+            title: 'Add Note',
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+        ],
       ),
     );
   }
