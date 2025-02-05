@@ -13,12 +13,7 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   Hive.registerAdapter(NoteModelAdapter());
   await Hive.openBox<NoteModel>(kNotesBox);
-  runApp(
-    BlocProvider(
-      create: (context) => NotesCubit(),
-      child: NotesApp(),
-    ),
-  );
+  runApp(const NotesApp());
 }
 
 class NotesApp extends StatelessWidget {
@@ -34,13 +29,16 @@ class NotesApp extends StatelessWidget {
         //       create: (context) => AddNoteCubit(),
         //     ),
         //   ],
-        MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark, fontFamily: "Poppins",
-        // scaffoldBackgroundColor: Colors.black12,
+        BlocProvider(
+      create: (context) => NotesCubit()..fetchAllNotes(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          brightness: Brightness.dark, fontFamily: "Poppins",
+          // scaffoldBackgroundColor: Colors.black12,
+        ),
+        home: const NotesView(),
       ),
-      home: const NotesView(),
     );
   }
 }
