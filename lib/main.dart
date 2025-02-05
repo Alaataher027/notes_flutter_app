@@ -30,7 +30,7 @@ class NotesApp extends StatelessWidget {
         //     ),
         //   ],
         BlocProvider(
-      create: (context) => NotesCubit()..fetchAllNotes(),
+      create: (context) => NotesCubit(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
