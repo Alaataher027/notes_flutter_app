@@ -51,7 +51,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 50,
           ),
-          const ColorsListView(),
+          const ColorsListView(
+            // isActive: true,
+          ),
           // Spacer(), can't use it with SingleChildScrollView
           const SizedBox(
             height: 40,
