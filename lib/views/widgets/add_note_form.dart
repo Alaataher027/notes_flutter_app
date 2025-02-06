@@ -22,6 +22,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   String? title, content;
+  Color? color;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -51,9 +52,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 50,
           ),
-          const ColorsListView(
-            // isActive: true,
-          ),
+          const ColorsListView(),
           // Spacer(), can't use it with SingleChildScrollView
           const SizedBox(
             height: 40,
@@ -74,6 +73,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       date: formatedCurrentDate,
                       color: Colors.blueAccent.hashCode,
                     );
+                    print("color::${noteModel.color}, ${noteModel.title}");
                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
